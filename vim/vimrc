@@ -7,46 +7,21 @@ set bg=dark                 " dark background
 syntax on                   " enable syntax highlighting
 set clipboard=unnamed
 
-" Vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Basics
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'rking/ag.vim'
-Bundle 'jceb/vim-orgmode'
-Bundle 'mhinz/vim-startify'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tell-k/vim-browsereload-mac'
-Bundle 'Floobits/floobits-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'surround.vim'
 
-" Themes
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'sjl/badwolf'
+" set runtime path for Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Clojure
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-classpath'
-Bundle 'guns/vim-clojure-static'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'paredit.vim'
+" PLUGINS
+Plugin 'gmarik/Vundle.vim' "required
+Plugin 'tpope/vim-fugitive'
 
-" iOS 
-Bundle 'eraserhd/vim-ios'
+call vundle#end()    
+filetype plugin indent on
 
-" Python
-Bundle 'klen/python-mode'
-Bundle 'jmcantrell/vim-virtualenv'
-
-filetype plugin indent on     " required!
 
 " GUI
 if has("gui_running")
@@ -62,14 +37,14 @@ if has("gui_running")
   set novisualbell        " please, no visuals
   set anti                " anti-aliasing
   set mousehide           " hide the mouse when typing 
-  colorscheme Tomorrow-Night 
+  colorscheme Tomorrow-Night-Bright
 else
   " 256 colors setting
   set t_Co=256
   set mouse=a
   set ttymouse=xterm
   set termencoding=utf-8
-  colorscheme Tomorrow-Night 
+  colorscheme Tomorrow-Night-Bright 
 endif
 
 set nofoldenable    " disable folding
@@ -281,4 +256,3 @@ autocmd ColorScheme * highlight EasyMotionShade ctermfg=237 guifg=#3a3a3a
 " AutoReload
 let g:returnApp = "MacVim"
 command! -bar Cr silent ChromeReload
-

@@ -12,5 +12,9 @@ Based on [Joeri Djojosoeparto's] dotfiles :)
 [Joeri Djojosoeparto's]:https://github.com/pinda/dotfiles
 
 ## Requirements
-Don't forget to download the [powerline] fonts  
-[powerline]: https://github.com/Lokaltog/powerline-fonts
+Don't forget to download the following *after* installing the above
+* [Powerline] fonts  
+* [MacVim] editor
+
+[Powerline]: https://github.com/Lokaltog/powerline-fonts
+[MacVim]: https://code.google.com/p/macvim/
