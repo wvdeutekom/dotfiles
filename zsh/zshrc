@@ -11,6 +11,9 @@ export CASE_SENSITIVE="true"
 # Vagrant
 export VAGRANT_HOME=~/.vagrant.d
 
+# Editor
+export EDITOR="vim"
+
 # Comment this out to disable weekly auto-update checks
 # export DISABLE_AUTO_UPDATE="true"
 
@@ -48,6 +51,15 @@ alias cd="venv_cd"
 
 # Bindings
 bindkey -e
+
+# Aliases
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias tmuxconfig="vim ~/.tmux.conf"
+alias vimconfig="vim ~/.vimrc"
+
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 
 # If vim mode, than bind this key, can't live without
 # CTRL-R

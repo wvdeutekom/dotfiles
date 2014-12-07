@@ -1,18 +1,16 @@
-# Dotfiles 
+# Wijnand's dotfiles
 
-These are the personal dotfiles of Joeri Djojosoeparto. 
-Configuration for:
+My personal configuration (dot)files so far for: 
+* [tmux]
+* [oh-my-zsh]
+* [tmuxinator]
+[tmux]:http://tmux.sourceforge.net/
+[oh-my-zsh]:https://github.com/robbyrussell/oh-my-zsh
+[tmuxinator]:https://github.com/tmuxinator/tmuxinator
 
-*   [Git]
-*   [Mutt], with [Msmtp] and [offlineimap].
-*   [Vim]
-*   [Zsh]
-*   [Slate]
+Based on [Joeri Djojosoeparto's] dotfiles :)
+[Joeri Djojosoeparto's]:https://github.com/pinda/dotfiles
 
-[Git]: http://git-scm.com/ "Git homepage"
-[Mutt]: http://www.mutt.org/ "Mutt homepage"
-[Msmtp]: http://msmtp.sourceforge.net/ "Msmtp homepage"
-[offlineimap]: https://github.com/jgoerzen/offlineimap/wiki "offlineimap homepage"
-[Vim]: http://www.vim.org/ "Vim homepage"
-[Zsh]: http://zsh.org/ "Zsh homepage"
-[Slate]: https://github.com/jigish/slate "Slate github page"
+## Requirements
+Don't forget to download the [powerline] fonts  
+[powerline]: https://github.com/Lokaltog/powerline-fonts
