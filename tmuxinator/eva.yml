@@ -1,7 +1,7 @@
-# ~/.tmuxinator/bakstaaf.yml
+# ~/.tmuxinator/server.yml
 
-name: bakstaaf
-root: ~/Documents/Projects/meteor/bakstaaf
+name: eva
+root: ~/Documents/Projects/eva-ios
 
 # Optional tmux socket
 # socket_name: foo
@@ -22,11 +22,7 @@ windows:
   - editor:
       layout: 4b98,272x75,0,0{95x75,0,0,24,104x75,96,0,25,71x75,201,0[71x37,201,0,26,71x37,201,38,27]}
       panes:
-        - #empty
-        - #empty
+        - git gr
+        - git status
         - ls -a
         - htop
-  - meteor:
-      layout: main-vertical
-      panes:
-        - meteor 
