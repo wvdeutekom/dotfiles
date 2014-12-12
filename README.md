@@ -1,9 +1,11 @@
 # Wijnand's dotfiles
 
 My personal configuration (dot)files so far for: 
+* [vim]
 * [tmux]
 * [oh-my-zsh]
 * [tmuxinator]
+[vim]:http://www.vim.org/
 [tmux]:http://tmux.sourceforge.net/
 [oh-my-zsh]:https://github.com/robbyrussell/oh-my-zsh
 [tmuxinator]:https://github.com/tmuxinator/tmuxinator
@@ -15,7 +17,7 @@ Based on [Joeri Djojosoeparto's] dotfiles :)
 Don't forget to download the following *after* installing the above
 * [Powerline] fonts  
 * [MacVim] editor
-* [Vundle]: vundle vim plugin manager
+* [Vundle] vundle vim plugin manager
 
 [Powerline]: https://github.com/Lokaltog/powerline-fonts
 [MacVim]: https://code.google.com/p/macvim/
