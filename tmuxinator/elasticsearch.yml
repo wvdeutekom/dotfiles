@@ -1,0 +1,29 @@
+# ~/.tmuxinator/elasticsearch.yml
+
+name: elasticsearch
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - editor:
+      layout: bf75,270x68,0,0{120x68,0,0[120x19,0,0,7,120x48,0,20,10],149x68,121,0[149x19,121,0,9,149x48,121,20,11]}  
+      panes:
+        - watch -n 1 "netstat -nl"
+        - ssh root@178.62.219.188
+        - watch -n 1 "netstat -nl"
+        - ssh root@128.199.47.96
+  - log: tail -f log/development.log
