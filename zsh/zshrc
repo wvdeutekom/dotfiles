@@ -65,5 +65,5 @@ alias vimconfig="vim ~/.vimrc"
 # CTRL-R
 # bindkey "^r" history-incremental-search-backward
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH=/usr/local/bin:$PATH
+export PATH=/opt/subversion/bin:$PATH
