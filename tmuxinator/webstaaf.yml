@@ -1,7 +1,7 @@
-# ~/.tmuxinator/cookieclicker.yml
+# ~/.tmuxinator/webstaaf.yml
 
-name: cookieclicker
-root: ~/Documents/Projects/meteor/CookieClicker/
+name: webstaaf
+root: ~/WebstormProjects/bakstaaf/
 
 # Optional tmux socket
 # socket_name: foo
@@ -20,7 +20,7 @@ root: ~/Documents/Projects/meteor/CookieClicker/
 
 windows:
   - editor:
-      layout: 4164,238x64,0,0{75x64,0,0,1,162x64,76,0,2}
+      layout: main-vertical
       panes:
-        - meteor run
         - ls
+        - meteor run

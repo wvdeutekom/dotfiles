@@ -1,7 +1,7 @@
-# ~/.tmuxinator/cookieclicker.yml
+# ~/.tmuxinator/dashboard.yml
 
-name: cookieclicker
-root: ~/Documents/Projects/meteor/CookieClicker/
+name: dashboard
+root: ~/Projects/meteor/HTPC-Dashboard
 
 # Optional tmux socket
 # socket_name: foo
