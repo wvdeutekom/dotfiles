@@ -19,6 +19,6 @@ Don't forget to download the following *after* installing the above
 * [MacVim] editor
 * [Vundle] vundle vim plugin manager
 
-[Powerline]: https://github.com/Lokaltog/powerline-fonts
+[Powerline]: https://github.com/Lokaltog/powerline-fonts (Meslo works great with this configuration)
 [MacVim]: https://code.google.com/p/macvim/
 [Vundle]: https://github.com/gmarik/Vundle.vim
