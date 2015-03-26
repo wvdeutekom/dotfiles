@@ -1,7 +1,7 @@
-# ~/.tmuxinator/dashboard.yml
+# ~/.tmuxinator/docker.yml
 
-name: dashboard
-root: ~/Documents/Projects/meteor/HTPC-Dashboard
+name: docker
+root: ~/Documents/Dockerbuilds
 
 # Optional tmux socket
 # socket_name: foo
@@ -20,7 +20,8 @@ root: ~/Documents/Projects/meteor/HTPC-Dashboard
 
 windows:
   - editor:
-      layout: 4164,238x64,0,0{75x64,0,0,1,162x64,76,0,2}
+      layout: 9176,272x68,0,0{76x68,0,0,0,195x68,77,0[195x19,77,0,16,195x48,77,20,18]} 
       panes:
-        - meteor run
+        - ls
+        - watch -n 1 "docker ps"
         - ls
