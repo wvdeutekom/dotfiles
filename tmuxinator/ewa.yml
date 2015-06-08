@@ -1,7 +1,7 @@
-# ~/.tmuxinator/docker.yml
+# ~/.tmuxinator/ewa.yml
 
-name: docker
-root: ~/Documents/Dockerbuilds
+name: ewa
+root: ~/Documents/DockerSpace
 
 # Optional tmux socket
 # socket_name: foo
@@ -20,11 +20,7 @@ root: ~/Documents/Dockerbuilds
 
 windows:
   - editor:
-      layout: 1f6d,270x67,0,0{56x67,0,0[56x18,0,0,1,56x48,0,19,7],213x67,57,0[213x7,57,0,2,213x12,57,8,3,213x17,57,21,5,213x28,57,39,6]}
+      layout: 6b53,272x68,0,0{110x68,0,0,16,161x68,111,0,17}
       panes:
-        - ls
-        - ls
-        - cd Vagrant && vagrant up && watch -n 1 "docker ps"
-        - watch -n 1 "docker ps -a"
-        - watch -n 1 "docker images"
-        - ls
+        - git st
+        - ls -la
