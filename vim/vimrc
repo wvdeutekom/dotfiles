@@ -39,14 +39,14 @@ if has("gui_running")
   set novisualbell        " please, no visuals
   set anti                " anti-aliasing
   set mousehide           " hide the mouse when typing 
-  colorscheme Tomorrow-Night-Bright
+  colorscheme Tomorrow-Night
 else
   " 256 colors setting
   set t_Co=256
   set mouse=a
   set ttymouse=xterm
   set termencoding=utf-8
-  colorscheme Tomorrow-Night-Bright 
+  colorscheme Tomorrow-Night 
 endif
 
 set nofoldenable    " disable folding

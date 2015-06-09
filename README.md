@@ -13,6 +13,21 @@ My personal configuration (dot)files so far for:
 Based on [Joeri Djojosoeparto's] dotfiles :)
 [Joeri Djojosoeparto's]:https://github.com/pinda/dotfiles
 
+## Installation
+* Clone this repo using --recursive
+```
+$ git clone --recursive git@github.com:wvdeutekom/dotfiles.git
+```
+
+* Install zsh
+```
+$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+```
+* Run makefile
+```
+$ make
+```
+
 ## Requirements
 Don't forget to download the following *after* installing the above
 * [Powerline] fonts (Meslo works great with this configuration)

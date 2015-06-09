@@ -1,1 +1,1 @@
-/Users/wijnand/dotfiles/vim/indent/javascript.vim
+/home/wijnand/dotfiles/vim/indent/javascript.vim

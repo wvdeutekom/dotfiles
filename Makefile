@@ -8,6 +8,7 @@ git::
 
 vim::
 	@echo $(DOTFILES)
+	@rm -rf ${HOME}/.vim
 	@ln -fs $(DOTFILES)/vim/vimrc        ${HOME}/.vimrc
 	@ln -sf $(DOTFILES)/vim/vim         ${HOME}/.vim
 	@ln -fs $(DOTFILES)/vim/indent/*		${HOME}/.vim/indent        
