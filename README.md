@@ -27,6 +27,15 @@ $ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh 
 ```
 $ make
 ```
+Then you discover nothing works, so you actually install Vundle to manage your
+plugins..
+```
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+Open up vim and run PluginInstall
+```
+:PluginInstall
+```
 
 ## Requirements
 Don't forget to download the following *after* installing the above
