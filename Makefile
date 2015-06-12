@@ -2,16 +2,16 @@ DOTFILES = $(PWD)
 all:: git vim zsh tmux tmuxinator
 
 git::
-	@ln -fs $(DOTFILES)/git/gitignore       ${HOME}/.gitignore
-	@ln -fs $(DOTFILES)/git/gitconfig       ${HOME}/.gitconfig
+  @ln -fs $(DOTFILES)/git/gitignore ${HOME}/.gitignore
+	@ln -fs $(DOTFILES)/git/gitconfig ${HOME}/.gitconfig
 	@echo Git is symlinked.
 
 vim::
 	@echo $(DOTFILES)
 	@rm -rf ${HOME}/.vim
-	@ln -fs $(DOTFILES)/vim/vimrc        ${HOME}/.vimrc
-	@ln -sf $(DOTFILES)/vim/vim         ${HOME}/.vim
-	@ln -fs $(DOTFILES)/vim/indent/*		${HOME}/.vim/indent        
+	@ln -fs $(DOTFILES)/vim/vimrc ${HOME}/.vimrc
+	@ln -sf $(DOTFILES)/vim/vim ${HOME}/.vim
+	@ln -fs $(DOTFILES)/vim/indent/* ${HOME}/.vim/indent
 	@echo Vim is symlinked.
 
 zsh::
@@ -22,7 +22,7 @@ zsh::
 	@echo ZSH symlinked.
 
 tmux::
-	@ln -fs $(DOTFILES)/tmux/tmux.conf 	${HOME}/.tmux.conf
+	@ln -fs $(DOTFILES)/tmux/tmux.conf ${HOME}/.tmux.conf
 	@echo tmux is symlinked.
 
 tmuxinator::

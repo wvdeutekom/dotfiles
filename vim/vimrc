@@ -19,9 +19,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim' "required
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
 
-call vundle#end()    
+call vundle#end()
 filetype plugin indent on
 
 
@@ -38,7 +37,7 @@ if has("gui_running")
   set guioptions+=c
   set novisualbell        " please, no visuals
   set anti                " anti-aliasing
-  set mousehide           " hide the mouse when typing 
+  set mousehide           " hide the mouse when typing
   colorscheme Tomorrow-Night
 else
   " 256 colors setting
@@ -46,7 +45,7 @@ else
   set mouse=a
   set ttymouse=xterm
   set termencoding=utf-8
-  colorscheme Tomorrow-Night 
+  colorscheme Tomorrow-Night
 endif
 
 set nofoldenable    " disable folding
@@ -169,7 +168,7 @@ augroup rst
 augroup END
 
 " JSON
-au! BufRead,BufNewFile *.json setfiletype json 
+au! BufRead,BufNewFile *.json setfiletype json
 
 " Setup statusline with git
 set laststatus=2
@@ -222,12 +221,6 @@ augroup END
 
 " Badwolf theme settings
 let g:badwolf_darkgutter = 1
-
-" YouCompleteMe
-let g:ycm_min_num_of_chars_for_completion = 3 
-let g:ycm_confirm_extra_conf = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_allow_changing_updatetime = 0
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'

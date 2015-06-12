@@ -14,6 +14,8 @@ Based on [Joeri Djojosoeparto's] dotfiles :)
 [Joeri Djojosoeparto's]:https://github.com/pinda/dotfiles
 
 ## Installation
+I'll have to automate this later!
+
 * Clone this repo using --recursive
 ```
 $ git clone --recursive git@github.com:wvdeutekom/dotfiles.git
@@ -36,6 +38,11 @@ Open up vim and run PluginInstall
 ```
 :PluginInstall
 ```
+* Install autojump
+``` 
+brew install autojump
+```
+
 
 ## Requirements
 Don't forget to download the following *after* installing the above
