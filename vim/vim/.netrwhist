@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/wijnand/dotfiles/tmuxinator'
 let g:netrw_dirhist_2='/Users/wijnand/Documents/testingmeuk2/boot2docker-vagrant'
+let g:netrw_dirhist_3='/Users/wijnand/Documents/Projects/Blendle/devops/.git'

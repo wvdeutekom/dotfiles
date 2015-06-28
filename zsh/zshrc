@@ -79,3 +79,5 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 # Docker (default for Vagrant based boxes)
 export DOCKER_HOST=tcp://localhost:2375
 
+# Autojump
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew  --prefix)/etc/profile.d/autojump.sh
