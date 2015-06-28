@@ -1,10 +1,13 @@
 # Wijnand's dotfiles
 
 My personal configuration (dot)files so far for: 
+* OSX
+* [Git]
 * [vim]
 * [tmux]
 * [oh-my-zsh]
 * [tmuxinator]
+[Git]:https://git-scm.com/
 [vim]:http://www.vim.org/
 [tmux]:http://tmux.sourceforge.net/
 [oh-my-zsh]:https://github.com/robbyrussell/oh-my-zsh
@@ -25,9 +28,9 @@ $ git clone --recursive git@github.com:wvdeutekom/dotfiles.git
 ```
 $ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ```
-* Run makefile
+* Run the install script
 ```
-$ make
+$ sh install.sh
 ```
 Then you discover nothing works, so you actually install Vundle to manage your
 plugins..
