@@ -27,6 +27,16 @@ install_zsh () {
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 }
 
+install_vim () {
+    #this hasn't been tested yet, take a look at http://stackoverflow.com/questions/21694327/installing-vim-with-homebrew
+    echo "${green}Installing vim${NC}"
+    brew install macvim --override-system-vim
+    vundle
+}
+
+install_vundle () {
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+}
 link_git () {
     echo "${green}Linking git${NC}"
     ln -fs ${dotfiles}/git/gitignore ${home}/.gitignore
