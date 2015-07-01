@@ -37,6 +37,12 @@ plugins..
 ```
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
+Compile YouCompleteMe
+``` 
+$ cd ~/.vim/bundle/YouCompleteMe
+$ ./install.sh --clang-completer
+``` 
+
 Open up vim and run PluginInstall
 ```
 :PluginInstall

@@ -81,3 +81,9 @@ export DOCKER_HOST=tcp://localhost:2375
 
 # Autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew  --prefix)/etc/profile.d/autojump.sh
+
+# for golang
+# # mkdir $HOME/go
+# # mkdir -p $GOPATH/src/github.com/user
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
