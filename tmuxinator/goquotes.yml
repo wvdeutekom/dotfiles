@@ -1,0 +1,29 @@
+# ~/.tmuxinator/goquotes.yml
+
+name: goquotes
+root: ~/go/src/github.com/wvdeutekom/webhookproject
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - server:
+      layout: cd38,272x72,0,0{136x72,0,0,7,135x72,137,0[135x36,137,0,10,135x35,137,37,11]}
+      panes:
+        - ./webhookproject
+        - ~/ngrok http 8000
+        - docker start rethink && git st
+  - editor: vim main.go
+  - editor: vim
