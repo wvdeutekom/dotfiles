@@ -71,16 +71,16 @@ export PATH=/opt/subversion/bin:$PATH
 #RVM
 source $HOME/.rvm/scripts/rvm
 
-#Docker stuff
-#export DOCKER_HOST=tcp://192.168.59.103:2376
-#export DOCKER_CERT_PATH=/Users/wijnand/.boot2docker/certs/boot2docker-vm
-#export DOCKER_TLS_VERIFY=1
+#Docker (boot2docker
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/wijnand/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
 
 #Yeoman / NPM
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 
 # Docker (default for Vagrant based boxes)
-export DOCKER_HOST=tcp://localhost:2375
+#export DOCKER_HOST=tcp://localhost:2375
 
 # Autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew  --prefix)/etc/profile.d/autojump.sh

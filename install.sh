@@ -17,6 +17,26 @@ install_brew () {
     echo "${green}Updating brew...${NC}"
     #brew update
 }
+
+install_git () {
+    echo "${green}Installing git${NC}"
+    brew install git
+}
+
+install_vundle () {
+    echo "${green}Installing vundle${NC}"
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    brew install CMake
+    vim +PluginInstall +qall
+}
+
+install_tmux () {
+    echo "${green}Installing tmux${NC}"
+    brew install tmux
+    brew install reattach-to-user-namespace
+    git clone https://github.com/powerline/fonts.git ~/Documents/powerline && ~/Documents/powerline/install.sh
+}
+
 install_autojump () {
     echo "${green}Installing Autojump${NC}"
     brew install autojump
@@ -27,16 +47,17 @@ install_zsh () {
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 }
 
-install_vim () {
+install_macvim () {
     #this hasn't been tested yet, take a look at http://stackoverflow.com/questions/21694327/installing-vim-with-homebrew
     echo "${green}Installing vim${NC}"
     brew install macvim --override-system-vim
     vundle
 }
 
-install_vundle () {
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+install_tmuxinator () {
+    gem install tmuxinator
 }
+
 link_git () {
     echo "${green}Linking git${NC}"
     ln -fs ${dotfiles}/git/gitignore ${home}/.gitignore
@@ -82,10 +103,14 @@ link_osx () {
 }
 
 install_brew
+install_macvim
+install_tmux
 install_autojump
 install_zsh
+install_tmuxinator
 link_git 
 link_vim 
+install_vundle
 link_zsh 
 link_tmux 
 link_tmuxinator 
