@@ -44,9 +44,6 @@ if [ `uname` = "Darwin" ]; then
   # Homebrew
   export PATH=$(brew --prefix ruby)/bin:$PATH
 
-  # RVM
-  export PATH="${HOME}/.rvm/bin:$PATH"
-
   # Clojure
   export CLASSPATH="$CLASSPATH:/usr/local/Cellar/clojure-contrib/1.2.0/clojure-contrib.jar"
 fi
@@ -65,10 +62,6 @@ if [ -e "$HOME/.aws" ]; then
   fi
 fi
 
-# RVM
-if [ -e "/Users/wunki/.rvm/scripts/rvm" ]; then
-    source /Users/wunki/.rvm/scripts/rvm
-fi
 
 # Virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs

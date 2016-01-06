@@ -1,30 +1,52 @@
 " Vim configuration file
 set cmdheight=2             " lower command line two lines high
 set nocompatible            " use vim defaults
-set encoding=utf-8          " utf-8 encoding
+"set encoding=utf-8          " utf-8 encoding
 set fileencoding=utf-8      " save files as utf-8
 set bg=dark                 " dark background
 syntax on                   " enable syntax highlighting
 set clipboard=unnamed
+:let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 
-" set runtime path for Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" " set runtime path for Vundle and initialize
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" 
+" " PLUGINS (using VUNDLE)
+" Plugin 'gmarik/Vundle.vim' "required
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'ctrlpvim/ctrlp.vim'
+" " Plugin 'scrooloose/syntastic'
+" Plugin 'fatih/vim-go'
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'rking/ag.vim'
+" " Plugin 'Xuyuanp/nerdtree-git-plugin'
+" " Plugin 'Valloric/YouCompleteMe'
+" 
+" call vundle#end()
+" filetype plugin indent on
 
-" PLUGINS
-Plugin 'gmarik/Vundle.vim' "required
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/syntastic'
-Plugin 'fatih/vim-go'
-" Plugin 'Valloric/YouCompleteMe'
+call plug#begin('~/.vim/plugged')
 
-call vundle#end()
-filetype plugin indent on
+" Make sure you use single quotes
+Plug 'junegunn/seoul256.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rking/ag.vim'
 
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic', { 'for': 'go' }
+Plug 'Valloric/YouCompleteMe', { 'for': 'go' }
+Plug 'pearofducks/ansible-vim'
+
+" Add plugins to &runtimepath
+call plug#end()
 
 " GUI
 if has("gui_running")
@@ -40,14 +62,16 @@ if has("gui_running")
   set novisualbell        " please, no visuals
   set anti                " anti-aliasing
   set mousehide           " hide the mouse when typing
+  "colorscheme zneburn
   colorscheme Tomorrow-Night
 else
   " 256 colors setting
   set t_Co=256
   set mouse=a
-  set ttymouse=xterm
+  "set ttymouse=xterm
   set termencoding=utf-8
-  colorscheme Tomorrow-Night
+  colorscheme zenburn
+  "colorscheme Tomorrow-Night
 endif
 
 set nofoldenable    " disable folding
@@ -85,7 +109,7 @@ set showcmd                 " shows partial command in the last line
 set ttyfast                 " improved remote connections
 set ruler                   " show the line and column number of the cursor
 set backspace=indent,eol,start
-set relativenumber          " show line numbering relative to current position
+" set relativenumber          " show line numbering relative to current position
 set number                  " show line numbering
 set undofile                " create undofiles
 set formatoptions=qrn1
@@ -184,6 +208,7 @@ set statusline+=%{&fileformat}]                 " file format
 set statusline+=\ %{fugitive#statusline()}      " git branch
 set statusline+=%=                              " right align
 set statusline+=%-14.(%l,%c%V%)\ %<%P           " offset
+:set cursorline
 
 " Shortcuts
 map <C-i> gqip
@@ -200,6 +225,9 @@ map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
+"Navigate through vim spaces using ctrl+h/j/k/l
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
 
 " Switch to alternate file
 map <C-Tab> :bnext<cr>
@@ -211,15 +239,6 @@ au! BufWritePost $MYVIMRC source %
 " Remove .py whitespace
 autocmd BufWritePre *.py :%s/\s\+$//e
 
-" Clojure
-let g:clojure_align_multiline_strings=1
-augroup ft_clojure
-    au!
-    au FileType clojure RainbowParenthesesActivate
-    au syntax clojure RainbowParenthesesLoadRound
-    au syntax clojure RainbowParenthesesLoadSquare
-    au syntax clojure RainbowParenthesesLoadBraces
-augroup END
 
 " Badwolf theme settings
 let g:badwolf_darkgutter = 1
@@ -236,7 +255,6 @@ nnoremap <leader>cc :CtrlPClearAllCaches<cr>
 let g:pymode_lint_ignore = "E501, E301"
 
 " Syntastic
-
 let g:syntastic_python_checkers=['pyflakes']
 
 let g:syntastic_error_symbol='✗'
@@ -253,3 +271,12 @@ autocmd ColorScheme * highlight EasyMotionShade ctermfg=237 guifg=#3a3a3a
 " AutoReload
 let g:returnApp = "MacVim"
 command! -bar Cr silent ChromeReload
+
+" NerdTree
+map <C-n> :NERDTreeToggle<CR>
+nmap <leader>F :NERDTreeFind
+
+"Auto open nerdtree on vim open
+" autocmd vimenter * NERDTree
+"Close nerdtree if only tab left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

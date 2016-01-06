@@ -1,10 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/wijnand/dotfiles/tmuxinator'
-let g:netrw_dirhist_2='/Users/wijnand/Documents/testingmeuk2/boot2docker-vagrant'
-let g:netrw_dirhist_3='/Users/wijnand/Documents/Projects/Blendle/devops/.git'
-let g:netrw_dirhist_4='/Users/wijnand/Documents/Projects/Go/app/src'
-let g:netrw_dirhist_5='/Users/wijnand/go/src/github.com/wvdeutekom/webhookproject'
-let g:netrw_dirhist_6='/Users/wijnand/go/src/github.com/wvdeutekom/webhookproject/api'
-let g:netrw_dirhist_7='/Users/wijnand/go/src/github.com/wvdeutekom/webhookproject/.git'
-let g:netrw_dirhist_8='/Users/wijnand/go/src/github.com/wvdeutekom/webhookproject/api'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/wijnand/Documents/Blendle/infrastructure/roles'
+let g:netrw_dirhist_2='/Users/wijnand/Documents/Blendle/infrastructure/roles/tftp'
+let g:netrw_dirhist_3='/Users/wijnand/Documents/Blendle/infrastructure/roles'
+let g:netrw_dirhist_4='/Users/wijnand/Documents/Blendle/core-api/config'
+let g:netrw_dirhist_5='/Users/wijnand/Documents/Blendle/core-api/config/capistrano'

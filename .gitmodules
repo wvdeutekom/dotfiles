@@ -16,6 +16,3 @@
 [submodule "vim/vim/bundle/vim-rooter"]
 	path = vim/vim/bundle/vim-rooter
 	url = git://github.com/airblade/vim-rooter.git
-[submodule "vim/vim/bundle/vundle"]
-	path = vim/vim/bundle/vundle
-	url = git://github.com/gmarik/vundle.git

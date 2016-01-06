@@ -47,6 +47,11 @@ install_zsh () {
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 }
 
+install_fzf () {
+    echo "${green}Installing fzf${NC}"
+    brew install fzf
+}
+
 install_macvim () {
     #this hasn't been tested yet, take a look at http://stackoverflow.com/questions/21694327/installing-vim-with-homebrew
     echo "${green}Installing vim${NC}"
@@ -115,3 +120,4 @@ link_zsh
 link_tmux 
 link_tmuxinator 
 link_osx
+install_fzf
