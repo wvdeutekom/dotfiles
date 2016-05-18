@@ -20,7 +20,7 @@ export VAGRANT_HOME=~/.vagrant.d
 # Editor
 export EDITOR="vim"
 
-export LC_ALL=en_US.UFT-8 
+export LC_ALL=en_US.UFT-8
 export LANG=en_US.UTF-8
 
 
@@ -71,8 +71,9 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/opt/subversion/bin:$PATH
 
 
-#Docker 
-export DOCKER_HOST=tcp://192.168.10.10:2375
+#Docker
+eval $(docker-machine env)
+#export DOCKER_HOST=tcp://192.168.10.10:2375
 #export DOCKER_CERT_PATH=/Users/wijnand/.boot2docker/certs/boot2docker-vm
 #export DOCKER_TLS_VERIFY=1
 
@@ -140,3 +141,12 @@ complete -F _complete_ssh_hosts ssh
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#DCOS
+alias dma="dcos marathon app"
+alias dm="dcos marathon"
+
+#path to the DCOS CLI binary
+if [[ "$PATH" != *"/Users/wijnand/dcos/bin"* ]];
+  then export PATH=$PATH:/Users/wijnand/dcos/bin;
+  fi
