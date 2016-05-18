@@ -59,6 +59,12 @@ install_macvim () {
     vundle
 }
 
+install_spacemacs () {
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
+    brew linkapps
+}
+
 install_tmuxinator () {
     gem install tmuxinator
 }
@@ -66,7 +72,7 @@ install_tmuxinator () {
 link_git () {
     echo "${green}Linking git${NC}"
     ln -fs ${dotfiles}/git/gitignore ${home}/.gitignore
-    ln -fs ${dotfiles}/git/gitconfig ${home}/.gitconfig	
+    ln -fs ${dotfiles}/git/gitconfig ${home}/.gitconfig
     echo "Git is symlinked."
 }
 
@@ -101,6 +107,11 @@ link_tmuxinator () {
     echo "tmuxinator is symlinked"
 }
 
+link_spacemacs () {
+    echo "${green}Linking spacemacs${NC}"
+    rm -rf ${HOME}/.spacemacs
+    ln -fs ${dotfiles}/spacemacs ${HOME}/.spacemacs.d
+}
 link_osx () {
     echo "${green}Linking .osx${NC}"
     ln -fs ${dotfiles}/osx/osx ${HOME}/.osx
@@ -113,11 +124,13 @@ install_tmux
 install_autojump
 install_zsh
 install_tmuxinator
-link_git 
-link_vim 
+link_git
+link_vim
 install_vundle
-link_zsh 
-link_tmux 
-link_tmuxinator 
+link_zsh
+link_tmux
+link_tmuxinator
 link_osx
 install_fzf
+install_spacemacs
+link_spacemacs
