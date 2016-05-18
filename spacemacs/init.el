@@ -247,14 +247,18 @@ values."
    dotspacemacs-whitespace-cleanup 'all
    ))
 
-(defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
-  )
+;; utility finction to auto-load my package configurations
+(defun wvd:load-config-file (filelist)
+  (dolist (file filelist)
+    (load (expand-file-name
+           (concat "~/.spacemacs.d/config/" file)))
+    (message "Loaded config file:%s" file)
+    ))
+;; load my configuration files
+(wvd:load-config-file '("user-init.el"
+                        "user-config.el"
+                        ))
 
-(load-file "~/.spacemacs.d/config/user-config.el")
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

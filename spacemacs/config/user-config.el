@@ -18,8 +18,15 @@ layers configuration. You are free to put any user code."
     ;; ....
     'org (setq org-agenda-files
                '("~/Dropbox/orgmode/notes/"))
-
   )
+
+  (spacemacs|define-custom-layout "dotfiles"
+    :binding "d"
+    :body
+    (find-file "~/.spacemacs.d/config/user-config.el")
+    (split-window-right)
+    (find-file "~/dotfiles/spacemacs/init.el")
+    )
 
   (spacemacs|define-custom-layout "infra"
     :binding "i"
@@ -51,4 +58,3 @@ layers configuration. You are free to put any user code."
     (find-file "~/Documents/restclient")
     )
 )
-
