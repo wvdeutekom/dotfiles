@@ -4,6 +4,7 @@
 *.beam
 *~
 .bzr/
+/vim/vim/*
 *.elc
 *.swp
 *.db
