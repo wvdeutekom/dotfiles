@@ -65,6 +65,16 @@ install_spacemacs () {
     brew linkapps
 }
 
+install_mu4e () {
+    brew install offlineimap
+}
+
+link_mu4e () {
+    mkdir -p ~/.mutt/
+    ln -fs ${dotfiles}/mutt/offlineimaprc ~/.offlineimaprc
+    ln -fs ${dotfiles}/mutt/offlineimap.py ~/.mutt/offlineimap.py
+}
+
 install_tmuxinator () {
     gem install tmuxinator
 }
@@ -134,3 +144,4 @@ link_osx
 install_fzf
 install_spacemacs
 link_spacemacs
+link_mu4e
