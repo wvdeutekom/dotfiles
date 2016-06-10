@@ -67,6 +67,7 @@ install_spacemacs () {
 
 install_mu4e () {
     brew install offlineimap
+    brew install mu --with-emacs
 }
 
 link_mu4e () {

@@ -73,7 +73,8 @@ oauth2_client_secret = xxxxx
 oauth2_refresh_token = xxxxx
 ```
 
-* [Get oauth2 credentials](https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=6262490) and then use the `client_id` and `client_id_secret` to retrieve your refresh token. I'm not using the `access_token` because it expires; the `refresh_token` enables offlineimap to obtain new access tokens.
+* [Get oauth2 credentials through console.cloud.google.com](https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=6262490). Go to Api manager -> enable 'Gmail API' -> go to `Credential` and press `create credentials` -> `OAuth client ID` -> other -> save your client id and client secret.
+* You can now use the `client_id` and `client_id_secret` to retrieve your refresh token. I'm not using the `access_token` because it expires; the `refresh_token` enables offlineimap to obtain new access tokens.
 * Clone this project: https://github.com/google/gmail-oauth2-tools to retrieve your `refresh_token`.
 ```
 python python/oauth2.py --generate_oauth2_token --client_id=YOUR_CLIENT_ID --client_secret=YOUR_CLIENT_SECRET

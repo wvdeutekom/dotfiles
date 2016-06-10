@@ -1,7 +1,7 @@
 [general]
 ui = TTYUI
-accounts = vdeute
-pythonfile=~/.mutt/offlineimap.py
+accounts = blendle
+pythonfile = /Users/wijnand/dotfiles/mutt/offlineimap.py
 fsync = False
 
 [Account vdeute]
@@ -23,16 +23,12 @@ nametrans = lambda folder: {'inbox': 'INBOX',
 [Repository vdeute-remote]
 maxconnections = 1
 type = Gmail
-remoteuser = wijnand@vdeute.com
-remotepasseval = get_keychain_pass(account="wijnand@vdeute.com", server="imap.gmail.com")
 realdelete = no
 ssl=true
 sslcacertfile = /usr/local/etc/openssl/cert.pem
-auth_mechanisms = GSSAPI, CRAM-MD5, XOAUTH2, PLAIN, LOGIN
-oauth2_request_url = https://accounts.google.com/o/oauth2/token
-oauth2_client_id = xxxx
-oauth2_client_secret = xxxx
-oauth2_refresh_token = xxxx
+auth_mechanisms = LOGIN
+remoteuser = wijnand@vdeute.com
+remotepasseval = get_keychain_pass(account="wijnand@vdeute.com", service="gmail.application.password")
 nametrans = lambda folder: {'INBOX':             'inbox',
                             '[Imap]/Drafts':     'drafts',
                             '[Gmail]/Sent Mail': 'sent',
@@ -44,3 +40,53 @@ folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
                                              '[Gmail]/Important',
                                              '[Gmail]/Spam',
                                              ]
+
+
+
+
+
+[Account blendle]
+localrepository = blendle-local
+remoterepository = blendle-remote
+status_backend = sqlite
+
+[Repository blendle-local]
+type = Maildir
+localfolders = ~/.mail/blendle
+nametrans = lambda folder: {'inbox': 'INBOX',
+                            'drafts':         '[Gmail]/Drafts',
+                            'sent':           '[Gmail]/Sent Mail',
+                            'flagged':        '[Gmail]/Starred',
+                            'trash':          '[Gmail]/Trash',
+                            'archive':        '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository blendle-remote]
+maxconnections = 1
+type = Gmail
+remoteuser = wijnand@blendle.com
+remotepasseval = get_keychain_pass(account="wijnand@blendle.com", service="gmail.application.password")
+auth_mechanisms = LOGIN
+realdelete = no
+ssl=true
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+nametrans = lambda folder: {'INBOX':             'inbox',
+                            '[Imap]/Drafts':     'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Important',
+                                             '[Gmail]/Spam',
+                                             ]
+
+
+
+# Offlineimap won't read variables from pythonfile, so could not store secrets/tokens. Reverted to remotepasseval
+# auth_mechanisms = GSSAPI, CRAM-MD5, XOAUTH2, PLAIN, LOGIN
+# oauth2_request_url = https://accounts.google.com/o/oauth2/token
+# oauth2_client_id =
+# oauth2_client_secret =
+# oauth2_refresh_token =
