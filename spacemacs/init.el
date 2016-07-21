@@ -35,16 +35,19 @@ values."
      emacs-lisp
      dockerfile
      yaml
+     ruby
      ansible
      git
      github
      go
      ;; markdown
-     org
-     (shell :variables
-            shell-default-height 30
-            shell-default-shell 'multi-term
-            shell-default-position 'bottom)
+     markdown
+     (org :variables
+       org-enable-github-support t)
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-shell 'multi-term
+     ;;        shell-default-position 'bottom)
      ;; spell-checking
      version-control
      )
@@ -52,7 +55,12 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vcl-mode)
+   dotspacemacs-additional-packages '(vcl-mode
+                                      jinja2-mode
+                                      aurora-theme
+                                      molokai-theme
+                                      ; slack
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -107,7 +115,11 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(sanityinc-tomorrow-eighties
+   dotspacemacs-themes '(molokai
+                         aurora
+                         base16-ocean-dark
+                         base16-default-dark
+                         sanityinc-tomorrow-eighties
                          spacemacs-dark
                          spacemacs-light
                          solarized-light
@@ -158,7 +170,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -260,6 +272,8 @@ values."
                         ))
 
 
+(setq exec-path-from-shell-check-startup-files nil)
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -267,7 +281,11 @@ values."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "790e74b900c074ac8f64fa0b610ad05bcfece9be44e8f5340d2d94c1e47538de" default)))
  '(send-mail-function (quote mailclient-send-it)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -92,8 +92,6 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# export PATH=/Users/wijnand/kubernetes/platforms/darwin/amd64:$PATH
-
 # The next line enables shell command completion for gcloud.
 source '/Users/wijnand/google-cloud-sdk/completion.zsh.inc'
 
@@ -150,3 +148,17 @@ alias dm="dcos marathon"
 if [[ "$PATH" != *"/Users/wijnand/dcos/bin"* ]];
   then export PATH=$PATH:/Users/wijnand/dcos/bin;
   fi
+
+
+#Vault io
+export PATH=/Users/wijnand/Downloads/vaultfolder:$PATH
+#export VAULT_ADDR=http://192.168.99.100:8200
+export VAULT_ADDR=http://172.31.33.102:27187
+
+export BLENDLE_CONFIG_PATH="/Users/wijnand/.blendle-config"
+. /Users/wijnand/.blendle-config/rc.sh
+
+#Kubernetes
+alias k="kubectl"
+alias kgp="kubectl get pods"
+alias kd="kubectl --namespace=deis"

@@ -6,6 +6,10 @@ layers configuration. You are free to put any user code."
   ;; Make linums relative by default
   ;; (global-linum-mode nil)
   ;; (linum-relative-toggle)
+  (autoload 'markdown-mode "markdown-mode"
+    "Major mode for editing Markdown files" t)
+  (add-to-list 'auto-mode-alist '("\\.post\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
   (setq helm-follow-mode-persistent t
     global-linum-mode t
