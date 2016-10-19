@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
+#fix osx sierra agent forwarding
+ssh-add -K ~/.ssh/id_rsa
+
 #source .path, .export and .aliases files
 for file in ~/.{path,exports,aliases}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
@@ -23,6 +26,8 @@ export EDITOR="vim"
 export LC_ALL=en_US.UFT-8
 export LANG=en_US.UTF-8
 
+# Print time statistics for any commands running longer than X seconds
+REPORTTIME=3
 
 # Comment this out to disable weekly auto-update checks
 # export DISABLE_AUTO_UPDATE="true"
@@ -162,3 +167,12 @@ export BLENDLE_CONFIG_PATH="/Users/wijnand/.blendle-config"
 alias k="kubectl"
 alias kgp="kubectl get pods"
 alias kd="kubectl --namespace=deis"
+
+function kns {
+    if [ -z "$1" ]; then
+        echo "Usage: kns [context] [namespace]\nExample: kns gke_old development"
+    else
+        kubectl config use-context "$1"
+        kubectl config set-context "$1" --namespace="$2"
+    fi
+}
