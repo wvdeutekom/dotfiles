@@ -32,10 +32,10 @@ if [ `uname` = "Darwin" ]; then
     alias brup="brew update; brew upgrade"
 
     # Emacs
-    alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-    alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
-    alias ec="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -t -a /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
-    alias ef="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -a /Applications/Emacs.app/Contents/MacOS/Emacs"
+    # alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+    # alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+    # alias ec="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -t -a /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+    # alias ef="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c -a /Applications/Emacs.app/Contents/MacOS/Emacs"
     
     # MongoDB
     alias mongod='mongod run --config /usr/local/Cellar/mongodb/2.0.2-x86_64/mongod.conf'
