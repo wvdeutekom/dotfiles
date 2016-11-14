@@ -112,12 +112,6 @@ source '/Users/wijnand/google-cloud-sdk/completion.zsh.inc'
 # added by travis gem
 [ -f /Users/wijnand/.travis/travis.sh ] && source /Users/wijnand/.travis/travis.sh
 
-# Terraform
-export TF_LOG=1
-
-# Atlas api token
-export ATLAS_TOKEN="SUyZNVXQ3JfM1A.atlasv1.V3ygEucwmjTlTTv64wbxmu3ddjI4BH3TvUsy80sqm3JYzatZ5zLr6T40w8tZKdgS2n8"
-
 # ssh config autocomplete
 _complete_ssh_hosts ()
 {
@@ -176,3 +170,12 @@ function kns {
         kubectl config set-context "$1" --namespace="$2"
     fi
 }
+
+if [ -n "$INSIDE_EMACS" ]; then
+    export EDITOR=emacsclient
+    unset zle_bracketed_paste  # This line
+fi
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM=xterm-256color
