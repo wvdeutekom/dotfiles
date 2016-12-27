@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ENCFS="/usr/local/bin/encfs"
-ENCDIR="$HOME/Dropbox/crypt"
+ENCDIR="$HOME/stack/crypt"
 DECDIR="$HOME/crypt"
 
 get_pw () {
