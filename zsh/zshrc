@@ -14,6 +14,10 @@ unset file
 # Look in ~/.oh-my-zsh/themes/
 export ZSH_THEME="nanotech"
 
+# Gotham Shell
+# GOTHAM_SHELL="$HOME/.config/gotham/gotham.sh"
+# [[ -s $GOTHAM_SHELL ]] && source $GOTHAM_SHELL
+
 # Set to this to use case-sensitive completion
 export CASE_SENSITIVE="true"
 
@@ -77,13 +81,10 @@ export PATH=/opt/subversion/bin:$PATH
 
 
 #Docker
-eval $(docker-machine env)
-#export DOCKER_HOST=tcp://192.168.10.10:2375
-#export DOCKER_CERT_PATH=/Users/wijnand/.boot2docker/certs/boot2docker-vm
-#export DOCKER_TLS_VERIFY=1
+# eval $(docker-machine env)
 
 #Yeoman / NPM
-export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+# export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 
 # Docker (default for Vagrant based boxes)
 #export DOCKER_HOST=tcp://localhost:2375
@@ -97,40 +98,40 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# The next line enables shell command completion for gcloud.
-source '/Users/wijnand/google-cloud-sdk/completion.zsh.inc'
+# # The next line enables shell command completion for gcloud.
+# source '/Users/wijnand/google-cloud-sdk/completion.zsh.inc'
 
+# # The next line updates PATH for the Google Cloud SDK.
+# source '/Users/wijnand/google-cloud-sdk/path.zsh.inc'
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/wijnand/google-cloud-sdk/path.zsh.inc'
+# # The next line enables shell command completion for gcloud.
+# source '/Users/wijnand/google-cloud-sdk/completion.zsh.inc'
 
-# The next line enables shell command completion for gcloud.
-source '/Users/wijnand/google-cloud-sdk/completion.zsh.inc'
-
-
+# Vim
+alias vim='mvim -v'
 
 # added by travis gem
 [ -f /Users/wijnand/.travis/travis.sh ] && source /Users/wijnand/.travis/travis.sh
 
 # ssh config autocomplete
-_complete_ssh_hosts ()
-{
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    comp_ssh_hosts=`cat ~/.ssh/known_hosts | \
-        cut -f 1 -d ' ' | \
-        sed -e s/,.*//g | \
-        grep -v ^# | \
-        uniq | \
-        grep -v "\[" ;
-    cat ~/.ssh/config | \
-        grep "^Host " | \
-        awk '{print $2}'
-    `
-    COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
-    return 0
-}
-complete -F _complete_ssh_hosts ssh
+# _complete_ssh_hosts ()
+# {
+#     COMPREPLY=()
+#     cur="${COMP_WORDS[COMP_CWORD]}"
+#     comp_ssh_hosts=`cat ~/.ssh/known_hosts | \
+#         cut -f 1 -d ' ' | \
+#         sed -e s/,.*//g | \
+#         grep -v ^# | \
+#         uniq | \
+#         grep -v "\[" ;
+#     cat ~/.ssh/config | \
+#         grep "^Host " | \
+#         awk '{print $2}'
+#     `
+#     COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
+#     return 0
+# }
+# complete -F _complete_ssh_hosts ssh
 
 # Openconnect (blendle)
  alias baremetal="sudo openconnect --no-xmlpost -u rqcxadmin https://95.211.182.91:443"
@@ -150,12 +151,9 @@ if [[ "$PATH" != *"/Users/wijnand/dcos/bin"* ]];
 
 
 #Vault io
-export VAULT_SKIP_VERIFY=true
-export PATH=/Users/wijnand/Downloads/vaultfolder:$PATH
-export VAULT_ADDR=https://10.132.0.6:32001
-
-export BLENDLE_CONFIG_PATH="/Users/wijnand/.blendle-config"
-. /Users/wijnand/.blendle-config/rc.sh
+# export VAULT_SKIP_VERIFY=true
+# export PATH=/Users/wijnand/Downloads/vaultfolder:$PATH
+# export VAULT_ADDR=https://10.132.0.6:32001
 
 #Kubernetes
 alias k="kubectl"
@@ -169,6 +167,12 @@ function kns {
         kubectl config use-context "$1"
         kubectl config set-context "$1" --namespace="$2"
     fi
+}
+
+function kns {
+    kubectl config set-context $(kubectl config current-context) \
+    --namespace=$((kubectl get namespaces -o name | sed 's-namespace/--') \
+    | fzf -1 -0 --tac --prompt "$(kubectl config current-context)> ")
 }
 
 if [ -n "$INSIDE_EMACS" ]; then

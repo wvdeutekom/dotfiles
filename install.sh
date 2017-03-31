@@ -1,4 +1,6 @@
 #! /bin/bash
+set -eo
+
 # Install script for my dotfiles
 # Advanced construction techniques (duct tape.)
 
@@ -34,7 +36,10 @@ install_tmux () {
     echo "${green}Installing tmux${NC}"
     brew install tmux
     brew install reattach-to-user-namespace
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     git clone https://github.com/powerline/fonts.git ~/Documents/powerline && ~/Documents/powerline/install.sh
+
+    # Set '/bin/zsh -c tmux attach -t base || tmux new -s base' as login command in iTerm2 if tmux is your default
 }
 
 install_autojump () {
@@ -63,17 +68,6 @@ install_spacemacs () {
     brew tap d12frosted/emacs-plus
     brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
     brew linkapps
-}
-
-install_mu4e () {
-    brew install offlineimap
-    brew install mu --with-emacs
-}
-
-link_mu4e () {
-    mkdir -p ~/.mutt/
-    ln -fs ${dotfiles}/mutt/offlineimaprc ~/.offlineimaprc
-    ln -fs ${dotfiles}/mutt/offlineimap.py ~/.mutt/offlineimap.py
 }
 
 install_tmuxinator () {
@@ -145,4 +139,3 @@ link_osx
 install_fzf
 install_spacemacs
 link_spacemacs
-link_mu4e

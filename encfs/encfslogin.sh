@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -x
+
 ENCFS="/usr/local/bin/encfs"
-ENCDIR="$HOME/stack/crypt"
+ENCDIR="$HOME/Sync/crypt"
 DECDIR="$HOME/crypt"
 
 get_pw () {
