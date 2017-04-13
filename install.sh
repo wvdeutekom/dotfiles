@@ -1,5 +1,4 @@
 #! /bin/bash
-#set -eo
 
 # Install script for my dotfiles
 # Advanced construction techniques (duct tape.)
@@ -68,6 +67,7 @@ install_spacemacs () {
     brew tap d12frosted/emacs-plus
     brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
     brew linkapps
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 }
 
 install_tmuxinator () {
