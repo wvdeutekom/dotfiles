@@ -3,7 +3,8 @@
 set -x
 
 ENCFS="/usr/local/bin/encfs"
-ENCDIR="$HOME/Sync/crypt"
+ENCFS_XML="$HOME/.crypt/encfs6.xml"
+ENCDIR="$HOME/.crypt"
 DECDIR="$HOME/crypt"
 
 get_pw () {
@@ -11,4 +12,4 @@ get_pw () {
   | sed 's/password: "\(.*\)"/\1/'
 }
 
-get_pw | "$ENCFS" -S "$ENCDIR" "$DECDIR"
+get_pw | ENCFS6_CONFIG="$ENCFS_XML" "$ENCFS" -S "$ENCDIR" "$DECDIR"

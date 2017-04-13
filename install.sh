@@ -1,5 +1,5 @@
 #! /bin/bash
-set -eo
+#set -eo
 
 # Install script for my dotfiles
 # Advanced construction techniques (duct tape.)
@@ -61,10 +61,10 @@ install_macvim () {
     #this hasn't been tested yet, take a look at http://stackoverflow.com/questions/21694327/installing-vim-with-homebrew
     echo "${green}Installing vim${NC}"
     brew install macvim --override-system-vim
-    vundle
 }
 
 install_spacemacs () {
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
     brew tap d12frosted/emacs-plus
     brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
     brew linkapps
@@ -72,6 +72,16 @@ install_spacemacs () {
 
 install_tmuxinator () {
     gem install tmuxinator
+}
+
+install_brews () {
+    brew cask install osxfuse
+    brew tap homebrew/fuse
+    brew install encfs
+
+    brew install fzf
+
+    brew install Caskroom/cask/chitchat
 }
 
 link_git () {
@@ -128,7 +138,7 @@ install_macvim
 install_tmux
 install_autojump
 install_zsh
-install_tmuxinator
+#install_tmuxinator
 link_git
 link_vim
 install_vundle
