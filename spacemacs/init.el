@@ -1,7 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -27,46 +26,105 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+;   dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
+   ;; ----------------------------------------------------------------
+   ;; List of useful layers to have in Spacemacs. This should only list
+   ;; layers to be loaded on /every/ system I install Spacemacs to. If a
+   ;; layer should be loaded only on some of the systems, or loaded
+   ;; everywhere but configured differently, then it belongs in /each/ of the
+   ;; /other/ lists as appropriate, which follow.
+   ;; ----------------------------------------------------------------
    dotspacemacs-configuration-layers
    '(
-     html
-     ansible
-     auto-completion
      better-defaults
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar (display-graphic-p))
      deft
      emacs-lisp
+     emoji
      git
-     github
-     go
-     helm
+     javascript
      markdown
-     nginx
-     org
-     osx
-     rust
-     semantic
+     ;php   MJL20161218 Recursive Load issue (ACK'd on package's home page)
+     (shell :variables
+            shell-default-shell 'eshell
+            shell-default-full-span nil
+            shell-default-height 66
+            shell-default-position 'top)
+     spell-checking
      syntax-checking
      version-control
+     xkcd
      yaml
-     javascript
      )
+   )
+
+  ;; ----------------------------------------------------------------
+  ;; These list layers to load on specific platforms or systems
+  ;; ----------------------------------------------------------------
+  (setq
+   ;; Layers to be loaded only on Macintosh
+   mjl--darwin-layers
+   '(
+     osx
+     (mjl :variables
+          mjl-bind-osx-keys nil ; bound by osx layer
+          mjl-bind-unix-keys nil ; don't exist on a Mac
+          mjl-work-initials "MLo") ; Squiz-style initials
+     )
+   ;; Layers to be loaded only on GNU/Linux
+   mjl--gnu/linux-layers
+   '(
+     (mjl :variables
+          mjl-bind-osx-keys t
+          mjl-bind-unix-keys t)
+     )
+   ;; Layers common to Unix systems
+   mjl--nix-layers
+   '(
+     (clojure :variables
+              clojure-enable-fancify-symbols t)
+     graphviz
+     scheme
+     )
+   )
+  ;; ----------------------------------------------------------------
+  ;; now append the layers lists depending on what the system is
+  ;; ----------------------------------------------------------------
+
+  ;; arrange layers lists first
+  (setq  mjl--layers dotspacemacs-configuration-layers)
+  (setq mjl--darwin-layers
+        (append mjl--darwin-layers mjl--nix-layers)
+        mjl--gnu/linux-layers
+        (append mjl--gnu/linux-layers mjl--nix-layers))
+
+  (cond ((eq system-type 'darwin)
+         (setq mjl--layers (append mjl--layers mjl--darwin-layers)))
+        ((eq system-type 'gnu/linux)
+         (setq mjl--layers (append mjl--layers mjl--gnu/linux-layers))))
+
+  (setq-default
+   ;; ----------------------------------------------------------------
+   ;; Now just set the master layers list from `mjl-layers' appended above
+   ;; ----------------------------------------------------------------
+   dotspacemacs-configuration-layers mjl--layers
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vcl-mode
-                                      jinja2-mode
-                                      molokai-theme
-                                      org-alert
-                                      gotham-theme
-                                      gnuplot-mode
+   dotspacemacs-additional-packages '(
+                                      idle-highlight-mode
+                                      imenu-list
+                                      minimap
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    php-extras ; MJL20151220 compilation errors
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -75,6 +133,80 @@ values."
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
+
+;; (defun dotspacemacs/layers ()
+;;   "Configuration Layers declaration.
+;; You should not put any user code in this function besides modifying the variable
+;; values."
+;;   (setq-default
+;;    ;; Base distribution to use. This is a layer contained in the directory
+;;    ;; `+distribution'. For now available distributions are `spacemacs-base'
+;;    ;; or `spacemacs'. (default 'spacemacs)
+;;    dotspacemacs-distribution 'spacemacs
+;;    ;; Lazy installation of layers (i.e. layers are installed only when a file
+;;    ;; with a supported type is opened). Possible values are `all', `unused'
+;;    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+;;    ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+;;    ;; lazy install any layer that support lazy installation even the layers
+;;    ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+;;    ;; installation feature and you have to explicitly list a layer in the
+;;    ;; variable `dotspacemacs-configuration-layers' to install it.
+;;    ;; (default 'unused)
+;;    dotspacemacs-enable-lazy-installation 'unused
+;;    ;; If non-nil then Spacemacs will ask for confirmation before installing
+;;    ;; a layer lazily. (default t)
+;;    dotspacemacs-ask-for-lazy-installation t
+;;    ;; If non-nil layers with lazy install support are lazy installed.
+;;    ;; List of additional paths where to look for configuration layers.
+;;    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+;;    dotspacemacs-configuration-layer-path '()
+;;    ;; List of configuration layers to load.
+;;    dotspacemacs-configuration-layers
+;;    '(
+;;      html
+;;      ansible
+;;      auto-completion
+;;      better-defaults
+;;      deft
+;;      emacs-lisp
+;;      git
+;;      github
+;;      go
+;;      helm
+;;      markdown
+;;      nginx
+;;      org
+;;      osx
+;;      rust
+;;      semantic
+;;      syntax-checking
+;;      version-control
+;;      yaml
+;;      javascript
+;;      )
+;;    ;; List of additional packages that will be installed without being
+;;    ;; wrapped in a layer. If you need some configuration for these
+;;    ;; packages, then consider creating a layer. You can also put the
+;;    ;; configuration in `dotspacemacs/user-config'.
+;;    dotspacemacs-additional-packages '(vcl-mode
+;;                                       jinja2-mode
+;;                                       molokai-theme
+;;                                       org-alert
+;;                                       gotham-theme
+;;                                       gnuplot-mode
+;;                                       )
+;;    ;; A list of packages that cannot be updated.
+;;    dotspacemacs-frozen-packages '()
+;;    ;; A list of packages that will not be installed and loaded.
+;;    dotspacemacs-excluded-packages '()
+;;    ;; Defines the behaviour of Spacemacs when installing packages.
+;;    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
+;;    ;; `used-only' installs only explicitly used packages and uninstall any
+;;    ;; unused packages as well as their unused dependencies.
+;;    ;; `used-but-keep-unused' installs only the used packages but won't uninstall
+;;    ;; them if they become unused. `all' installs *all* packages supported by
+;;    ;; Spacemacs and never uninstall them. (default is `used-only')
+;;    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -505,7 +637,87 @@ you should place your code here."
  '(org-agenda-todo-ignore-scheduled (quote all))
  '(package-selected-packages
    (quote
-    (gh marshal logito pcache winum unfill powerline pcre2el spinner hydra parent-mode projectile request fuzzy pkg-info epl flx smartparens iedit anzu evil goto-chg undo-tree highlight diminish company-ansible bind-map bind-key packed f dash s helm avy helm-core async popup tern toml-mode racer flycheck-rust seq cargo rust-mode base16-ocean-dark-theme go-guru swift-mode org-alert gnuplot-mode haml-mode web-completion-data color-theme-solarized sql-indent nginx-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic slack emojify circe oauth2 websocket ht nyan-mode company-emacs-eclim eclim solarized-theme skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode dash-functional markdown-mode go-mode company inf-ruby yasnippet auto-complete org alert log4e gntp mwim gitignore-mode fringe-helper git-gutter+ git-gutter flyspell-correct-helm flyspell-correct pos-tip flycheck magit magit-popup git-commit with-editor auto-dictionary define-word zonokai-theme zenburn-theme zen-and-art-theme yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe vcl-mode uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stickyfunc-enhance stekene-theme srefactor spacemacs-theme spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme reveal-in-osx-finder restclient restart-emacs rbenv rake rainbow-delimiters railscasts-theme quelpa purple-haze-theme pug-mode professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pbcopy pastels-on-dark-theme paradox ox-gfm osx-trash osx-dictionary orgit organic-green-theme org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-http noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow magit-gh-pulls macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme less-css-mode launchctl json-mode js2-refactor js-doc jinja2-mode jbeans-theme jazz-theme ir-black-theme insert-shebang inkpot-theme info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme fish-mode firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme diff-hl deft darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web company-tern company-statistics company-shell company-go column-enforce-mode colorsarenice-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clean-aindent-mode chruby cherry-blossom-theme busybee-theme bundler bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile aurora-theme apropospriate-theme anti-zenburn-theme ansible-doc ansible ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (gh marshal logito pcache winum unfill powerline pcre2el
+ spinner hydra parent-mode projectile request fuzzy pkg-info epl
+ flx smartparens iedit anzu evil goto-chg undo-tree highlight
+ diminish company-ansible bind-map bind-key packed f dash s helm
+ avy helm-core async popup tern toml-mode racer seq cargo
+ rust-mode base16-ocean-dark-theme go-guru swift-mode org-alert
+ gnuplot-mode haml-mode web-completion-data color-theme-solarized
+ sql-indent nginx-mode yapfify pyvenv pytest pyenv-mode py-isort
+ pip-requirements live-py-mode hy-mode helm-pydoc cython-mode
+ company-anaconda anaconda-mode pythonic slack emojify circe
+ oauth2 websocket ht nyan-mode company-emacs-eclim eclim
+ solarized-theme skewer-mode simple-httpd json-snatcher
+ json-reformat multiple-cursors js2-mode dash-functional
+ markdown-mode go-mode company inf-ruby yasnippet auto-complete
+ org alert log4e gntp mwim gitignore-mode fringe-helper
+ git-gutter+ git-gutter flyspell-correct-helm flyspell-correct
+ pos-tip flycheck magit magit-popup git-commit with-editor
+ auto-dictionary define-word zonokai-theme zenburn-theme
+ zen-and-art-theme yaml-mode xterm-color ws-butler
+ window-numbering which-key web-mode web-beautify
+ volatile-highlights vi-tilde-fringe vcl-mode uuidgen use-package
+ underwater-theme ujelly-theme twilight-theme
+ twilight-bright-theme twilight-anti-bright-theme tronesque-theme
+ toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme
+ tango-2-theme tagedit sunny-day-theme sublime-themes
+ subatomic256-theme subatomic-theme stickyfunc-enhance
+ stekene-theme srefactor spacemacs-theme spaceline
+ spacegray-theme soothe-theme soft-stone-theme soft-morning-theme
+ soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop
+ seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode
+ rubocop rspec-mode robe reverse-theme reveal-in-osx-finder
+ restclient restart-emacs rbenv rake rainbow-delimiters
+ railscasts-theme quelpa purple-haze-theme pug-mode
+ professional-theme popwin planet-theme phoenix-dark-pink-theme
+ phoenix-dark-mono-theme persp-mode pbcopy pastels-on-dark-theme
+ paradox ox-gfm osx-trash osx-dictionary orgit
+ organic-green-theme org-projectile org-present org-pomodoro
+ org-plus-contrib org-download org-bullets open-junk-file
+ omtose-phellack-theme oldlace-theme occidental-theme
+ obsidian-theme ob-http noctilux-theme niflheim-theme neotree
+ naquadah-theme mustang-theme multi-term move-text monokai-theme
+ monochrome-theme molokai-theme moe-theme mmm-mode minitest
+ minimal-theme material-theme markdown-toc majapahit-theme
+ magit-gitflow magit-gh-pulls macrostep lush-theme lorem-ipsum
+ livid-mode linum-relative link-hint light-soap-theme
+ less-css-mode launchctl json-mode js2-refactor js-doc
+ jinja2-mode jbeans-theme jazz-theme ir-black-theme
+ insert-shebang inkpot-theme info+ indent-guide ido-vertical-mode
+ hungry-delete htmlize hl-todo highlight-parentheses
+ highlight-numbers highlight-indentation hide-comnt heroku-theme
+ hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile
+ helm-mode-manager helm-make helm-gitignore helm-flx
+ helm-descbinds helm-css-scss helm-company helm-c-yasnippet
+ helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme
+ grandshell-theme gotham-theme google-translate golden-ratio
+ go-eldoc gnuplot github-search github-clone github-browse-file
+ gitconfig-mode gitattributes-mode git-timemachine git-messenger
+ git-link git-gutter-fringe git-gutter-fringe+ gist gh-md
+ gandalf-theme flycheck-pos-tip flx-ido flatui-theme
+ flatland-theme fish-mode firebelly-theme fill-column-indicator
+ farmhouse-theme fancy-battery eyebrowse expand-region
+ exec-path-from-shell evil-visualstar evil-visual-mark-mode
+ evil-unimpaired evil-tutor evil-surround
+ evil-search-highlight-persist evil-numbers evil-nerd-commenter
+ evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus
+ evil-iedit-state evil-exchange evil-escape evil-ediff evil-args
+ evil-anzu eval-sexp-fu espresso-theme eshell-z
+ eshell-prompt-extras esh-help emmet-mode elisp-slime-nav
+ dumb-jump dracula-theme django-theme diff-hl deft
+ darktooth-theme darkokai-theme darkmine-theme darkburn-theme
+ dakrone-theme cyberpunk-theme company-web company-tern
+ company-statistics company-shell company-go column-enforce-mode
+ colorsarenice-theme color-theme-sanityinc-tomorrow
+ color-theme-sanityinc-solarized coffee-mode clues-theme
+ clean-aindent-mode chruby cherry-blossom-theme busybee-theme
+ bundler bubbleberry-theme birds-of-paradise-plus-theme
+ badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile
+ aurora-theme apropospriate-theme anti-zenburn-theme ansible-doc
+ ansible ample-zen-theme ample-theme alect-themes
+ aggressive-indent afternoon-theme adaptive-wrap ace-window
+ ace-link ace-jump-helm-line ac-ispell)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
