@@ -1,14 +1,12 @@
 #!/bin/bash
 
-set -x
+set -euxo pipefail
 
 ENCFS="/usr/local/bin/encfs"
-ENCDIR="$HOME/Sync/crypt"
-DECDIR="$HOME/crypt"
 
-get_pw () {
-  security 2>&1 >/dev/null find-generic-password -ga "encfs" \
-  | sed 's/password: "\(.*\)"/\1/'
+function get_pw() {
+  security 2>&1 >/dev/null find-generic-password -ga "$1" | head -1 | sed 's/password: "\(.*\)"/\1/'
 }
 
-get_pw | "$ENCFS" -S "$ENCDIR" "$DECDIR"
+get_pw "encfs" | ENCFS6_CONFIG="$HOME/Sync/crypt/encfs6.xml" "$ENCFS" -S "$HOME/Sync/crypt" "$HOME/crypt"
+get_pw "encfs_photos" | ENCFS6_CONFIG="$HOME/Pictures/.picture_crypt/encfs6.xml" "$ENCFS" -S "$HOME/Pictures/.picture_crypt" "$HOME/Pictures/personal"
