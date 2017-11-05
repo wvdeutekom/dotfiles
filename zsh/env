@@ -66,3 +66,7 @@ export NOSE_WITH_COVERAGE=true
 
 # PIP
 export PIP_DOWNLOAD_CACHE=$HOME/.pip-cache
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

@@ -56,14 +56,14 @@ alias gs="git status --ignore-submodules=dirty"
 alias gp="git push origin master"
 alias gf="git pull origin master"
 
-# Python servers
-alias "smtpd"="python -m smtpd -n -c DebuggingServer localhost:1025"
-alias "fileserver"="python -m SimpleHTTPServer"
+# SSH
+alias sshconf='vim ~/.ssh/config'
 
-# Django
-alias rs='./manage.py runserver 127.0.0.1:8000'
-alias rsp='./manage.py runserver 127.0.0.1:8000 --settings=settings_production'
-alias tst='./manage.py test'
+# Hostfile
+alias hostconf='sudo vim /etc/hosts'
+
+# ZSH conf
+alias zshconf='vim ~/.zshrc'
 
 # Pypi
 alias pyup='python setup.py sdist register upload'
@@ -72,4 +72,9 @@ alias pyup='python setup.py sdist register upload'
 alias gd='git diff | subl -w'
 
 # Mutt
-alias mutt='cd ~/Downloads && mutt'
+#alias mutt='cd ~/Downloads && mutt'
+
+
+#alias kstats='kubectl get nodes | grep gke | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
+#alias kstats='kubectl get nodes | awk '\''FNR > 1 {print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
+              #kubectl get nodes | awk 'FNR > 1 {print $1}' | xargs -I {} sh -c 'echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '
