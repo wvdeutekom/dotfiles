@@ -42,7 +42,7 @@ REPORTTIME=3
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
-plugins=(git vagrant django tmux tmuxinator)
+plugins=(git vagrant tmux zsh-autosuggestions)
 if [ `uname` = "Darwin" ]; then
    plugins+=(brew osx)
 fi
@@ -111,7 +111,7 @@ export PATH=$PATH:$GOPATH/bin
 alias vim='mvim -v'
 
 # added by travis gem
-[ -f /Users/wijnand/.travis/travis.sh ] && source /Users/wijnand/.travis/travis.sh
+#[ -f /Users/wijnand/.travis/travis.sh ] && source /Users/wijnand/.travis/travis.sh
 
 # ssh config autocomplete
 # _complete_ssh_hosts ()
@@ -134,21 +134,11 @@ alias vim='mvim -v'
 # complete -F _complete_ssh_hosts ssh
 
 # Openconnect (blendle)
- alias baremetal="sudo openconnect --no-xmlpost -u rqcxadmin https://95.211.182.91:443"
+# alias baremetal="sudo openconnect --no-xmlpost -u rqcxadmin https://95.211.182.91:443"
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# History fuzzy search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#DCOS
-alias dma="dcos marathon app"
-alias dm="dcos marathon"
-
-#path to the DCOS CLI binary
-if [[ "$PATH" != *"/Users/wijnand/dcos/bin"* ]];
-  then export PATH=$PATH:/Users/wijnand/dcos/bin;
-  fi
-
 
 #Vault io
 # export VAULT_SKIP_VERIFY=true
@@ -169,11 +159,31 @@ function kns {
     fi
 }
 
+# Kubernetes interactive cluster and namespace switch
+function kts {
+    kubectl config use-context $(kubectl config get-contexts -o name | fzf --select-1 --exit-0 --prompt "Select cluster: ") && kns
+}
+
+# Kubernetes interactive namespace switch
 function kns {
     kubectl config set-context $(kubectl config current-context) \
-    --namespace=$((kubectl get namespaces -o name | sed 's-namespaces/--') \
-    | fzf -1 -0 --tac --prompt "$(kubectl config current-context)> ")
+            --namespace=$((kubectl get namespaces -o name | sed 's-namespaces/--') \
+            | fzf -1 -0 --prompt "Select namespace: " --preview="kubectl get pods --namespace={}" --preview-window=down:30)
 }
+
+# Kubernetes check CPU/MEM Requests and Limits
+function kstats {
+    kubectl get nodes \
+        | awk 'FNR > 1 {print $1}' \
+        | xargs -I {} sh -c 'echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '
+}
+
+
+# function kns {
+#     kubectl config set-context $(kubectl config current-context) \
+#     --namespace=$((kubectl get namespaces -o name | sed 's-namespaces/--') \
+#     | fzf -1 -0 --tac --prompt "$(kubectl config current-context)> ")
+# }
 
 if [ -n "$INSIDE_EMACS" ]; then
     export EDITOR=emacsclient
@@ -189,3 +199,10 @@ if [ -f '/Users/wijnandvandeutekom/Downloads/google-cloud-sdk/path.zsh.inc' ]; t
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/wijnandvandeutekom/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/wijnandvandeutekom/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# PHP Pear
+export PATH=/Users/wijnandvandeutekom/pear/bin:$PATH
+
+#Node NVM
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
