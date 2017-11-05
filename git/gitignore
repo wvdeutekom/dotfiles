@@ -9,3 +9,6 @@
 *.db
 .#*
 *.sublime-workspace
+.idea/
+.stversions/
+.vagrant

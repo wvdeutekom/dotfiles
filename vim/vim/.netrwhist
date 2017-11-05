@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/wijnand/Documents/Blendle/blendle-etl/config/kubernetes/actions.yml'
 let g:netrw_dirhist_2='/Users/wijnand/.kube'
+let g:netrw_dirhist_3='/Users/wijnandvandeutekom/.tmux'
+let g:netrw_dirhist_4='/Users/wijnandvandeutekom/.tmux/plugins'
+let g:netrw_dirhist_5='/Users/wijnandvandeutekom/.zsh'
+let g:netrw_dirhist_6='/Users/wijnandvandeutekom/go/src/github.com/robfig/cron'
+let g:netrw_dirhist_7='/Users/wijnandvandeutekom/.tmux'
